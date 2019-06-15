@@ -9,6 +9,11 @@ services:
             - .docker/.bashrc:/root/.bashrc
         build:
             context: .docker/php
+        environment:
+            APP_ENV: 'dev'
+            APP_SECRET: '626bc82e64cf03896038999bd45fcc80'
+            APP_DEBUG: 'true'
+            DATABASE_URL: 'sqlite:///%kernel.project_dir%/var/data.db'
 
     nginx:
         container_name: nginx
