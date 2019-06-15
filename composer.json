@@ -33,6 +33,12 @@
     }
   },
   "scripts": {
+    "cs:check": "vendor/bin/phpcs --colors -ps",
+    "test:unit": "vendor/bin/phpunit --testdox --color=always",
+    "tests": [
+      "@cs:check",
+      "@test:unit"
+    ],
     "auto-scripts": {
       "cache:clear": "symfony-cmd"
     },

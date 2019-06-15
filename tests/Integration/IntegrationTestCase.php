@@ -26,26 +26,41 @@ class IntegrationTestCase extends WebTestCase
         return $this->request(Request::METHOD_GET, $uri);
     }
 
+    /**
+     * @param string[]|int[] $data
+     */
     protected function post(string $uri, array $data): Response
     {
         return $this->request(Request::METHOD_POST, $uri, $data);
     }
 
+    /**
+     * @param string[]|int[] $data
+     */
     protected function put(string $uri, array $data): Response
     {
         return $this->request(Request::METHOD_PUT, $uri, $data);
     }
 
+    /**
+     * @param string[]|int[] $data
+     */
     protected function patch(string $uri, array $data): Response
     {
         return $this->request(Request::METHOD_PATCH, $uri, $data);
     }
 
+    /**
+     * @param string[]|int[] $data
+     */
     protected function delete(string $uri, array $data): Response
     {
         return $this->request(Request::METHOD_DELETE, $uri, $data);
     }
 
+    /**
+     * @param string[]|int[] $data
+     */
     private function request(string $method, string $uri, array $data = []): Response
     {
         $this->client->insulate();

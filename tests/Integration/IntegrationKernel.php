@@ -8,6 +8,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class IntegrationKernel extends Kernel
 {
+    public function __construct()
+    {
+        parent::__construct('test', true);
+    }
+
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         parent::configureContainer($container, $loader);
