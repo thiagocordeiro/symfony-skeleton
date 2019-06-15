@@ -1,0 +1,3 @@
+index:
+    path: /users/{email}
+    controller: App\Framework\Controller\UserController

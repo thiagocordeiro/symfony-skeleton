@@ -5,6 +5,7 @@ namespace App\Infra\User;
 use App\Domain\User\User;
 use App\Domain\User\UserRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,6 +15,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class DoctrineUserRepository extends ServiceEntityRepository implements UserRepository
 {
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, User::class);
+    }
+
+
     public function findByEmail(string $email): ?User
     {
         return $this->findOneBy(['email' => $email]);
