@@ -1,0 +1,5 @@
+index:
+    path: /users/{email}
+    methods:
+        - GET
+    controller: App\Framework\Controller\UserController
