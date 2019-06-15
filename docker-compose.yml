@@ -1,0 +1,22 @@
+version: '3'
+services:
+    ### auth service
+    php-fpm:
+        container_name: php-fpm
+        image: devilbox/php-fpm-7.4:latest
+        volumes:
+            - ./:/var/www/html
+            - .docker/.bashrc:/root/.bashrc
+        build:
+            context: .docker/php
+
+    nginx:
+        container_name: nginx
+        image: nginx
+        volumes:
+            - .docker/nginx.conf:/etc/nginx/conf.d/default.conf
+            - .docker/.bashrc:/root/.bashrc
+        links:
+            - php-fpm
+        ports:
+            - 80:80
