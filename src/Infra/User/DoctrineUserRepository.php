@@ -4,6 +4,7 @@ namespace App\Infra\User;
 
 use App\Domain\User\User;
 use App\Domain\User\UserRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
