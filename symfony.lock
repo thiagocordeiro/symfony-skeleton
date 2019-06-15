@@ -108,6 +108,9 @@
     "phpspec/prophecy": {
         "version": "1.8.1"
     },
+    "phpstan/phpdoc-parser": {
+        "version": "0.3.5"
+    },
     "phpunit/php-code-coverage": {
         "version": "7.0.5"
     },
@@ -182,6 +185,9 @@
     },
     "sebastian/version": {
         "version": "2.0.1"
+    },
+    "slevomat/coding-standard": {
+        "version": "5.0.4"
     },
     "squizlabs/php_codesniffer": {
         "version": "3.0",
