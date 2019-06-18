@@ -1,5 +1,5 @@
-index:
-    path: /users/{email}
+users:
+    path: /api/users/{email}
     methods:
         - GET
-    controller: App\Framework\Controller\UserController
+    controller: App\Framework\Controller\User\UserController

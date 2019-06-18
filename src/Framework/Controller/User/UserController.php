@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Framework\Controller;
+namespace App\Framework\Controller\User;
 
 use App\Domain\User\Exception\UserNotFoundException;
 use App\Domain\User\UserFinderService;

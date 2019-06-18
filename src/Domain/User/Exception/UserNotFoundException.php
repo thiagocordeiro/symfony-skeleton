@@ -2,8 +2,8 @@
 
 namespace App\Domain\User\Exception;
 
-use App\Domain\DomainException;
+use App\Domain\ApplicationDomainException;
 
-class UserNotFoundException extends DomainException
+class UserNotFoundException extends ApplicationDomainException
 {
 }

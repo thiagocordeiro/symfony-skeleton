@@ -25,7 +25,7 @@ services:
             APP_ENV: 'dev'
             APP_SECRET: '626bc82e64cf03896038999bd45fcc80'
             APP_DEBUG: 'true'
-            DATABASE_URL: 'mysql://dev:dev@mysql:3306/project'
+            DATABASE_URL: 'mysql://dev:dev@mysql:3306/default'
 
     nginx:
         container_name: nginx
