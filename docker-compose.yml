@@ -1,9 +1,21 @@
 version: '3'
 services:
-    ### auth service
+    mysql:
+        container_name: mysql
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: default
+            MYSQL_USER: dev
+            MYSQL_PASSWORD: dev
+        ports:
+            - 3306:3306
+
     php-fpm:
         container_name: php-fpm
         image: devilbox/php-fpm:7.4-prod
+        links:
+            - mysql
         volumes:
             - ./:/var/www/html
             - .docker/.bashrc:/root/.bashrc
@@ -13,7 +25,7 @@ services:
             APP_ENV: 'dev'
             APP_SECRET: '626bc82e64cf03896038999bd45fcc80'
             APP_DEBUG: 'true'
-            DATABASE_URL: 'sqlite:///%kernel.project_dir%/var/data.db'
+            DATABASE_URL: 'mysql://dev:dev@mysql:3306/project'
 
     nginx:
         container_name: nginx
@@ -25,3 +37,4 @@ services:
             - php-fpm
         ports:
             - 80:80
+
