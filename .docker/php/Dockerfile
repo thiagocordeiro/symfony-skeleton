@@ -1,4 +1,4 @@
-FROM devilbox/php-fpm-7.4
+FROM devilbox/php-fpm:7.4-prod
 
 RUN apt update ; apt upgrade
 RUN apt-get install git-all zip unzip -y

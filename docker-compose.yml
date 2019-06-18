@@ -3,7 +3,7 @@ services:
     ### auth service
     php-fpm:
         container_name: php-fpm
-        image: devilbox/php-fpm-7.4:latest
+        image: devilbox/php-fpm:7.4-prod
         volumes:
             - ./:/var/www/html
             - .docker/.bashrc:/root/.bashrc
