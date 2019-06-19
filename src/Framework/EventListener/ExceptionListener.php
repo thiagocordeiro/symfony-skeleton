@@ -13,8 +13,9 @@ class ExceptionListener
     {
         $exception = $event->getException();
 
-        if (is_a($exception, HttpException::class)) {
+        if ($exception instanceof HttpException) {
             $event->setResponse(new JsonResponse([
+                'status' => $exception->getStatusCode(),
                 'message' => $exception->getMessage(),
             ]));
 
@@ -22,6 +23,7 @@ class ExceptionListener
         }
 
         $event->setResponse(new JsonResponse([
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             'message' => 'Internal Server Error',
         ], Response::HTTP_INTERNAL_SERVER_ERROR));
     }
