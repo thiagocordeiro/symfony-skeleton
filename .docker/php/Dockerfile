@@ -1,6 +1,6 @@
 FROM devilbox/php-fpm:7.4-prod
 
-RUN apt update ; apt upgrade
+RUN apt update -y ; apt upgrade -y
 RUN apt-get install git-all zip unzip -y
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
