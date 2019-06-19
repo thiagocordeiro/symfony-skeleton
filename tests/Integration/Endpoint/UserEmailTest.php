@@ -18,14 +18,14 @@ class UserEmailTest extends IntegrationTestCase
 
     public function testWhenUserDoesNotExistThenThrowNotFoundError(): void
     {
-        $response = $this->get('/users/user@localhost');
+        $response = $this->get('/api/users/user@localhost');
 
         $this->assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 
     public function testWhenUserExistsThenReturnItsData(): void
     {
-        $response = $this->get('/users/test@localhost');
+        $response = $this->get('/api/users/test@localhost');
 
         $content = (string) $response->getContent();
 

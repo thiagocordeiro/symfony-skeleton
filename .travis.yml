@@ -16,8 +16,7 @@ install:
     - docker exec php-fpm composer install
 
 script:
-    - docker exec php-fpm composer run cs:check
-    - docker exec php-fpm composer run test:unit
+    - docker exec php-fpm composer tests
 
 after_failure:
     - docker-compose php-fpm logs -f
