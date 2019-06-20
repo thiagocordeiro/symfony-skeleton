@@ -27,5 +27,7 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\Framework\EventListener\ExceptionListener:
+        arguments:
+            $debug: '%kernel.debug%'
         tags:
             - { name: kernel.event_listener, event: kernel.exception }

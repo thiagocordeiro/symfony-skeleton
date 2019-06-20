@@ -2,30 +2,33 @@
 
 namespace App\Domain\User;
 
+use App\Domain\User\Values\Email;
+
 class User
 {
-    private int $id;
-    private string $email;
-    private string $username;
+    private string $id;
+    private string $name;
+    private Email $email;
 
-    public function __construct(string $email, string $username)
+    public function __construct(string $id, string $name, Email $email)
     {
+        $this->id = $id;
         $this->email = $email;
-        $this->username = $username;
+        $this->name = $name;
     }
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function getEmail(): string
+    public function getEmail(): Email
     {
         return $this->email;
     }
 
-    public function getUsername(): string
+    public function getName(): string
     {
-        return $this->username;
+        return $this->name;
     }
 }

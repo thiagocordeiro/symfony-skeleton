@@ -10,7 +10,7 @@ class IntegrationKernel extends Kernel
 {
     public function __construct()
     {
-        parent::__construct('test', true);
+        parent::__construct('test', false);
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
