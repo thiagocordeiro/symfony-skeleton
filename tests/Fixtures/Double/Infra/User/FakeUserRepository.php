@@ -15,7 +15,8 @@ class FakeUserRepository implements Finder, Creator, Update, Delete
     private const EMAIL = 'test@localhost.com';
     private const NAME = 'Local Tester';
 
-    private ?User $testUser;
+    /** @var User|null */
+    private $testUser;
 
     public function findById(string $email): ?User
     {
@@ -39,5 +40,10 @@ class FakeUserRepository implements Finder, Creator, Update, Delete
     public function delete(User $user): void
     {
         $this->testUser = null;
+    }
+
+    public function getTestUser(): ?User
+    {
+        return $this->testUser;
     }
 }
