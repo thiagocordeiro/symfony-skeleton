@@ -31,7 +31,7 @@ class ErrorDetail implements JsonSerializable
             'message' => $this->message,
             'file' => $this->file,
             'line' => $this->line,
-            'previous' => json_encode($this->previous),
+            'previous' => $this->previous,
         ];
     }
 }
