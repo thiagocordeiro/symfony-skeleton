@@ -18,13 +18,18 @@ class FakeUserRepository implements Finder, Creator, Update, Delete
     /** @var User|null */
     private $testUser;
 
+    public function __construct()
+    {
+        $this->testUser = new User(self::ID, self::NAME, new Email(self::EMAIL));
+    }
+
     public function findById(string $email): ?User
     {
         if ($email !== self::ID) {
             return null;
         }
 
-        return new User(self::ID, self::NAME, new Email(self::EMAIL));
+        return $this->testUser;
     }
 
     public function create(User $user): void
