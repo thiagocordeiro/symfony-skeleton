@@ -53,7 +53,7 @@ class IntegrationTestCase extends WebTestCase
     /**
      * @param string[]|int[] $data
      */
-    protected function delete(string $uri, array $data): Response
+    protected function delete(string $uri, array $data = []): Response
     {
         return $this->request(Request::METHOD_DELETE, $uri, $data);
     }
@@ -63,7 +63,6 @@ class IntegrationTestCase extends WebTestCase
      */
     private function request(string $method, string $uri, array $data = []): Response
     {
-        $this->client->insulate();
         $this->client->request($method, $uri, [], [], [], json_encode($data));
 
         return $this->client->getResponse();

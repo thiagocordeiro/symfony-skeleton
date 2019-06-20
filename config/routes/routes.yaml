@@ -1,5 +1,0 @@
-users:
-    path: /api/users/{email}
-    methods:
-        - GET
-    controller: App\Framework\Controller\User\UserController

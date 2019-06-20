@@ -2,7 +2,19 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
-    App\Domain\User\UserRepository:
         public: true
-        class: App\Tests\Fixtures\Infra\User\FakeUserRepository
+
+    App\Domain\UuidGenerator:
+        class: App\Tests\Fixtures\Double\Infra\FakeUuidGenerator
+
+    App\Domain\User\UserCreator:
+        class: App\Tests\Fixtures\Double\Infra\User\FakeUserRepository
+
+    App\Domain\User\UserFinder:
+        class: App\Tests\Fixtures\Double\Infra\User\FakeUserRepository
+
+    App\Domain\User\UserUpdater:
+        class: App\Tests\Fixtures\Double\Infra\User\FakeUserRepository
+
+    App\Domain\User\UserDeleter:
+        class: App\Tests\Fixtures\Double\Infra\User\FakeUserRepository

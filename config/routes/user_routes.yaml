@@ -1,0 +1,23 @@
+user_create:
+    path: /api/users
+    methods:
+        - POST
+    controller: App\Framework\Controller\User\RegisterUserController
+
+user_load:
+    path: /api/users/{id}
+    methods:
+        - GET
+    controller: App\Framework\Controller\User\LoadUserController
+
+user_update:
+    path: /api/users/{id}
+    methods:
+        - PUT
+    controller: App\Framework\Controller\User\UpdateUserController
+
+user_delete:
+    path: /api/users/{id}
+    methods:
+        - DELETE
+    controller: App\Framework\Controller\User\DeleteUserController

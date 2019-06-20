@@ -6,9 +6,9 @@ use App\Domain\User\Exception\UserNotFoundException;
 
 class UserFinderService
 {
-    private UserRepository $repository;
+    private UserFinder $repository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserFinder $repository)
     {
         $this->repository = $repository;
     }
@@ -16,9 +16,9 @@ class UserFinderService
     /**
      * @throws UserNotFoundException
      */
-    public function findByEmail(string $email): User
+    public function find(string $id): User
     {
-        $user = $this->repository->findByEmail($email);
+        $user = $this->repository->findById($id);
 
         if (!$user) {
             throw new UserNotFoundException();

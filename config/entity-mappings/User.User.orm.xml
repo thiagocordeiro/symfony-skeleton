@@ -4,7 +4,7 @@
         <id name="id" type="string">
             <generator strategy="NONE"/>
         </id>
-        <field name="username" length="255"/>
-        <field name="email" length="255"/>
+        <field name="name" length="255"/>
+        <field name="email" type="useremail" length="255"/>
     </entity>
 </doctrine-mapping>
