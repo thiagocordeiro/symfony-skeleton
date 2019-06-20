@@ -22,14 +22,18 @@ class UserDeletionServiceTest extends TestCase
 
     public function testWhenUserIsNotFoundThenThrowError(): void
     {
+        $id = 'abc-123';
+
         $this->expectException(UserNotFoundException::class);
 
-        $this->service->delete('abc-123');
+        $this->service->delete($id);
     }
 
     public function testWhenUserIsFoundThenDelete(): void
     {
-        $this->service->delete(self::USER_ID);
+        $id = self::USER_ID;
+
+        $this->service->delete($id);
 
         $this->assertNull($this->repository->getTestUser());
     }

@@ -24,17 +24,20 @@ class UserFinderServiceTest extends TestCase
 
     public function testWhenUserIsNotFoundThenThrowError(): void
     {
+        $id = 'abc-123';
+
         $this->expectException(UserNotFoundException::class);
 
-        $this->service->find('abc-123');
+        $this->service->find($id);
     }
 
     public function testWhenUserIsFoundThenReturnIt(): void
     {
-        $user = $this->service->find(self::USER_ID);
+        $id = self::USER_ID;
 
-        $expected = new User(self::USER_ID, 'Local Tester', new Email('test@localhost.com'));
+        $user = $this->service->find($id);
 
+        $expected = new User($id, 'Local Tester', new Email('test@localhost.com'));
         $this->assertEquals($expected, $user);
     }
 }

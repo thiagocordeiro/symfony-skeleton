@@ -55,10 +55,11 @@ class UserUpdateServiceTest extends TestCase
     {
         $name = 'Arthur Dent';
         $email = 'arthur.dent@galaxy.net';
+        $id = self::USER_ID;
 
-        $this->service->update(self::USER_ID, $name, $email);
+        $this->service->update($id, $name, $email);
 
-        $expected = new User(self::USER_ID, $name, new Email($email));
+        $expected = new User($id, $name, new Email($email));
         $this->assertEquals($expected, $this->repository->getTestUser());
     }
 }

@@ -15,22 +15,22 @@ class GetUserTest extends IntegrationTestCase
 
     public function testWhenUserDoesNotExistThenThrowNotFoundError(): void
     {
-        $response = $this->get(sprintf('/api/users/%s', 'aaa-bbb-ccc'));
+        $id = 'aaa-bbb-ccc';
 
-        $content = (string) $response->getContent();
+        $response = $this->get(sprintf('/api/users/%s', $id));
 
-        $this->assertEquals('{"status":404,"message":"User Not Found"}', $content);
+        $this->assertEquals('{"status":404,"message":"User Not Found"}', (string) $response->getContent());
     }
 
     public function testWhenGivenCorrectDataThenUpdateUserAndReturnNoContent(): void
     {
-        $response = $this->get(sprintf('/api/users/%s', self::USER_ID));
+        $id = self::USER_ID;
 
-        $content = (string) $response->getContent();
+        $response = $this->get(sprintf('/api/users/%s', $id));
 
         $this->assertEquals(
             '{"id":"99f1a67d-4176-4f7d-96e4-d5897ac4a800","name":"Local Tester","email":"test@localhost.com"}',
-            $content
+            (string) $response->getContent()
         );
     }
 }

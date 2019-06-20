@@ -11,14 +11,18 @@ class DeleteUserTest extends IntegrationTestCase
 
     public function testWhenUserDoesNotExistThenThrowNotFoundError(): void
     {
-        $response = $this->delete(sprintf('/api/users/%s', 'aaa-bbb-ccc'));
+        $id = 'aaa-bbb-ccc';
+
+        $response = $this->delete(sprintf('/api/users/%s', $id));
 
         $this->assertEquals('{"status":404,"message":"User Not Found"}', (string) $response->getContent());
     }
 
     public function testWhenUserExistsThenDeleteAndReturnNoContent(): void
     {
-        $response = $this->delete(sprintf('/api/users/%s', self::USER_ID));
+        $id = self::USER_ID;
+
+        $response = $this->delete(sprintf('/api/users/%s', $id));
 
         $this->assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
     }
