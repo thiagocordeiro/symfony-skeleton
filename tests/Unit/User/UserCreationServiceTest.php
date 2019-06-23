@@ -4,22 +4,20 @@ namespace App\Tests\Unit\User;
 
 use App\Domain\User\Exception\InvalidEmailException;
 use App\Domain\User\Exception\InvalidNameException;
-use App\Domain\User\User;
 use App\Domain\User\UserCreationService;
-use App\Domain\User\Values\Email;
+use App\Domain\User\UserCreator;
 use App\Tests\Fixtures\Double\Infra\FakeUuidGenerator;
-use App\Tests\Fixtures\Double\Infra\User\FakeUserRepository;
 use PHPUnit\Framework\TestCase;
 
 class UserCreationServiceTest extends TestCase
 {
-    private FakeUserRepository $repository;
+    private UserCreator $creator;
     private UserCreationService $service;
 
     public function setUp(): void
     {
-        $this->repository = new FakeUserRepository();
-        $this->service = new UserCreationService($this->repository, new FakeUuidGenerator());
+        $this->creator = $this->createMock(UserCreator::class);
+        $this->service = new UserCreationService($this->creator, new FakeUuidGenerator());
     }
 
     public function testWhenNameIsInvalidThenThrowNameError(): void
@@ -45,9 +43,8 @@ class UserCreationServiceTest extends TestCase
         $name = 'Arthur Dent';
         $email = 'local@local.com';
 
-        $uuid = $this->service->create($name, $email);
+        $this->creator->expects($this->once())->method('create');
 
-        $expected = new User($uuid, $name, new Email($email));
-        $this->assertEquals($expected, $this->repository->getTestUser());
+        $this->service->create($name, $email);
     }
 }
