@@ -6,6 +6,7 @@ use App\Domain\User\Exception\InvalidEmailException;
 use App\Domain\User\Exception\InvalidNameException;
 use App\Domain\User\Exception\UserNotFoundException;
 use App\Domain\User\User;
+use App\Domain\User\UserUpdater;
 use App\Domain\User\UserUpdateService;
 use App\Domain\User\Values\Email;
 use App\Tests\Fixtures\Double\Infra\User\FakeUserRepository;
@@ -15,13 +16,13 @@ class UserUpdateServiceTest extends TestCase
 {
     private const USER_ID = '99f1a67d-4176-4f7d-96e4-d5897ac4a800';
 
-    private FakeUserRepository $repository;
+    private UserUpdater $updater;
     private UserUpdateService $service;
 
     public function setUp(): void
     {
-        $this->repository = new FakeUserRepository();
-        $this->service = new UserUpdateService($this->repository, $this->repository);
+        $this->updater = $this->createMock(UserUpdater::class);
+        $this->service = new UserUpdateService(new FakeUserRepository(), $this->updater);
     }
 
     public function testWhenNameIsInvalidThenThrowNameError(): void
@@ -57,9 +58,9 @@ class UserUpdateServiceTest extends TestCase
         $email = 'arthur.dent@galaxy.net';
         $id = self::USER_ID;
 
-        $this->service->update($id, $name, $email);
+        $user = new User($id, $name, new Email($email));
+        $this->updater->expects($this->once())->method('update')->with($user);
 
-        $expected = new User($id, $name, new Email($email));
-        $this->assertEquals($expected, $this->repository->getTestUser());
+        $this->service->update($id, $name, $email);
     }
 }

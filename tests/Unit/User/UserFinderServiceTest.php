@@ -4,22 +4,24 @@ namespace App\Tests\Unit\User;
 
 use App\Domain\User\Exception\UserNotFoundException;
 use App\Domain\User\User;
+use App\Domain\User\UserFinder;
 use App\Domain\User\UserFinderService;
 use App\Domain\User\Values\Email;
-use App\Tests\Fixtures\Double\Infra\User\FakeUserRepository;
 use PHPUnit\Framework\TestCase;
 
 class UserFinderServiceTest extends TestCase
 {
     private const USER_ID = '99f1a67d-4176-4f7d-96e4-d5897ac4a800';
+    private const EMAIL = 'test@localhost.com';
+    private const NAME = 'Local Tester';
 
-    private FakeUserRepository $repository;
+    private UserFinder $finder;
     private UserFinderService $service;
 
     public function setUp(): void
     {
-        $this->repository = new FakeUserRepository();
-        $this->service = new UserFinderService($this->repository);
+        $this->finder = $this->createMock(UserFinder::class);
+        $this->service = new UserFinderService($this->finder);
     }
 
     public function testWhenUserIsNotFoundThenThrowError(): void
@@ -35,9 +37,12 @@ class UserFinderServiceTest extends TestCase
     {
         $id = self::USER_ID;
 
-        $user = $this->service->find($id);
+        $this->finder
+            ->expects($this->once())
+            ->method('findById')
+            ->with($id)
+            ->willReturn(new User(self::USER_ID, self::NAME, new Email(self::EMAIL)));
 
-        $expected = new User($id, 'Local Tester', new Email('test@localhost.com'));
-        $this->assertEquals($expected, $user);
+        $this->service->find($id);
     }
 }

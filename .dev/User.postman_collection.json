@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "7f8e50d0-027f-495c-a838-ab5ce26233f9",
+    "name": "User",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "create",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b5a9954a-7ece-424f-b0ff-1a49c63284e4",
+            "exec": [
+              "var data = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"id\", data.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Arthur Dent\",\n\t\"email\": \"arthur.dent@galaxy.org\"\n}"
+        },
+        "url": {
+          "raw": "localhost/api/users",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Arthur Dent\",\n\t\"email\": \"arthur@dent.org\"\n}"
+        },
+        "url": {
+          "raw": "localhost/api/users/{{id}}",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "load",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "localhost/api/users/{{id}}",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "14b088be-a714-4c57-8d30-2abe81d64a83",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "localhost/api/users/{{id}}",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "2602d702-e286-4df0-9b68-30ac65b41bc2",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "4100e942-2c43-414e-9b81-7e4b76f49a6a",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
