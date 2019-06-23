@@ -19,7 +19,7 @@ all you need is [docker](https://www.docker.com/get-started) and [docker-compose
 
 
 Good to go, we should have now an nginx container running on `port 80` and an api exposing a simple user CRUD, you can try on postman by importing `.dev/User.postman_collection.json` into your postman, create and select a environment (top/right corner), the `{{id}}` on urls should be automatically if you set the environment properly.
-![Postman setup](https://drive.google.com/file/d/1bUZ9GUNK5jJeYZaKaIYA7on53tOdA0r4)
+![Postman setup](https://drive.google.com/uc?id=1bUZ9GUNK5jJeYZaKaIYA7on53tOdA0r4)
 
 
 ### Running tests:
