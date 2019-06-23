@@ -90,6 +90,9 @@
     "ocramius/proxy-manager": {
         "version": "2.4.0"
     },
+    "paragonie/random_compat": {
+        "version": "v9.99.99"
+    },
     "phar-io/manifest": {
         "version": "1.0.3"
     },
@@ -149,6 +152,9 @@
     },
     "psr/log": {
         "version": "1.1.0"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
