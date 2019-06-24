@@ -37,7 +37,7 @@ class ExceptionListener
         }
 
         if ($this->debug) {
-            $data['details'] = $this->getExceptionDetails($exception);
+            $data['debug'] = $this->getExceptionDetails($exception);
         }
 
         $this->logExceptionIfNeeded($exception);
