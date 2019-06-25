@@ -14,7 +14,7 @@ final class Version20190618201915 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->abortIf($this->isMysql(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIfNotMysql();
 
         $this->addSql('
             CREATE TABLE users (
@@ -28,13 +28,15 @@ final class Version20190618201915 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->abortIf($this->isMysql(), 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIfNotMysql();
 
         $this->addSql('DROP TABLE users');
     }
 
-    public function isMysql(): bool
+    public function abortIfNotMysql(): bool
     {
-        return $this->connection->getDatabasePlatform()->getName() !== 'mysql';
+        $isMysql = $this->connection->getDatabasePlatform()->getName() === 'mysql';
+        
+        $this->abortIf(!$isMysql, 'Migration can only be executed safely on \'mysql\'.');
     }
 }
