@@ -33,7 +33,7 @@ final class Version20190618201915 extends AbstractMigration
         $this->addSql('DROP TABLE users');
     }
 
-    public function abortIfNotMysql(): bool
+    public function abortIfNotMysql(): void
     {
         $isMysql = $this->connection->getDatabasePlatform()->getName() === 'mysql';
         

@@ -12,14 +12,13 @@ before_install:
     - sudo service mysql stop
 
 install:
-    - docker-compose up --build -d
-    - docker exec php-fpm composer install
+    - make prod
 
 script:
-    - docker exec php-fpm composer tests
+    - make tests
 
 after_failure:
-    - docker-compose php-fpm logs -f
+    - make logs
 
 after_script:
-    - docker-compose down
+    - make down
