@@ -2,9 +2,7 @@
 
 set -e
 
-echo "${DB_HOST}:3306"
+./bin/wait-for "${DB_HOST}:${DB_PORT}" -- \
+  ./bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 
-# ./bin/wait-for "${DB_HOST}:3306" -- \
-#     ./bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
-
-# php -S 0.0.0.0:80 -t public/
+php -S 0.0.0.0:80 -t public/

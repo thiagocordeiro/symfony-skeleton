@@ -2,7 +2,6 @@
 
 set -a
 
-COLOR_BLUE=
 IMAGE_NAME=development
 DB_USER=root
 DB_PASS=root
@@ -33,7 +32,7 @@ function prod() { ### build production images
 }
 
 function logs() { ### show php-fpm errors
-  docker-compose -f docker-compose-prod.yml php-fpm logs -f
+  docker-compose -f docker-compose-prod.yml exec php-fpm logs -f
 }
 
 function armageddon() { ### stop/delete all containers and delete all images
