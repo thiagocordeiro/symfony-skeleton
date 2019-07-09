@@ -35,6 +35,10 @@ function logs() { ### show php-fpm errors
   docker-compose -f docker-compose-prod.yml exec php-fpm logs -f
 }
 
+function bash() { ### show php-fpm errors
+  docker-compose -f docker-compose-prod.yml -f docker-compose-dev.yml exec "$1" bash
+}
+
 function armageddon() { ### stop/delete all containers and delete all images
   docker stop $(docker ps -aq)
   docker rm $(docker ps -aq)

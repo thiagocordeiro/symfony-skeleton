@@ -6,6 +6,7 @@
     "ext-ctype": "*",
     "ext-iconv": "*",
     "ext-json": "*",
+    "phpstan/phpstan": "^0.11.12",
     "ramsey/uuid": "^3.8",
     "symfony/console": "4.3.*",
     "symfony/flex": "^1.1",
@@ -33,11 +34,13 @@
     }
   },
   "scripts": {
-    "cs:check": "vendor/bin/phpcs --colors -ps",
-    "test:unit": "vendor/bin/phpunit --testdox --color=always --testsuite Unit",
-    "test:int": "vendor/bin/phpunit --testdox --color=always --testsuite Integration",
+    "test:cs": "phpcs --standard=config/phpcs.xml --colors -ps",
+    "test:stan": "phpstan analyse src --level=max --ansi",
+    "test:unit": "phpunit -c config/phpunit.xml --testdox --color=always --testsuite Unit",
+    "test:int": "phpunit -c config/phpunit.xml --testdox --color=always --testsuite Integration",
     "tests": [
-      "@cs:check",
+      "@test:cs",
+      "@test:stan",
       "@test:unit",
       "@test:int"
     ],

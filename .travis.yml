@@ -12,13 +12,13 @@ before_install:
     - sudo service mysql stop
 
 install:
-    - make prod
+    - ./console dev
 
 script:
-    - make tests
+    - ./console tests
 
 after_failure:
-    - make logs
+    - ./console logs
 
 after_script:
-    - make down
+    - ./console down

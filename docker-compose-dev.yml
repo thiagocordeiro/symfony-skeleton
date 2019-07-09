@@ -19,7 +19,7 @@ services:
             - ./app/composer.lock:/var/www/html/composer.lock
             - ./app/symfony.lock:/var/www/html/symfony.lock
             - ./app/phpstan.neon:/var/www/html/phpstan.neon
-            - .docker/.bashrc:/root/.bashrc
+            - .bashrc:/root/.bashrc
         links:
             - mysql
         environment:
