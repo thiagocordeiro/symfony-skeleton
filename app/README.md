@@ -13,10 +13,15 @@ all you need is [docker](https://www.docker.com/get-started) and [docker-compose
 
     git clone git@github.com:thiagocordeiro/symfony-skeleton.git
     cd symfony-skeleton
-    docker-compose up --build -d
-    docker exec -it php-fpm composer install
-    docker exec -it php-fpm bin/console doctrine:migrations:migrate
+    ./console upd # or docker-compose up --build --detach
 
+`./console` makes even easier to run commands on `php-fpm` container, for ex.
+
+    ./console exec composer install
+    ./console exec bin/console doctrine:migrations:migrate
+    ./console tests
+  
+or just run `./console help` to see all commands available, of course you can create your own command if needed.
 
 Good to go, we should have now an nginx container running on `port 80` and an api exposing a simple user CRUD, you can try on postman by importing `.dev/User.postman_collection.json` into your postman, create and select a environment (top/right corner), the `{{id}}` on urls should be automatically if you set the environment properly.
 ![Postman setup](https://drive.google.com/uc?id=1m9vHuXWrv7liIRz_zN4c1hqBS31ijAeF)
@@ -24,9 +29,9 @@ Good to go, we should have now an nginx container running on `port 80` and an ap
 
 ### Running tests:
 
-    docker exec php-fpm composer run tests
+    ./console tests
     
 ### Stoping/Starting container
 
-    docker-compose down
-    docker-compose up
+    ./console down
+    ./console up # ./console upd start detached environment
