@@ -25,7 +25,7 @@ or just run `./console help` to see all commands available, of course you can cr
 
 ### Try it out
 Good to go, we should have now an nginx container running on `port 80` and an api exposing a simple user CRUD, you can try on postman by importing `.dev/User.postman_collection.json` into your postman, create and select a environment (top/right corner), the `{{id}}` on urls should be automatically if you set the environment properly.
-![Postman setup](https://drive.google.com/uc?id=1m9vHuXWrv7liIRz_zN4c1hqBS31ijAeF)
+![Postman setup](https://drive.google.com/uc?id=1arsAjTZEyErQY0EzFr2G67Aoq8vLWToj)
 
 
 ### Running tests:
