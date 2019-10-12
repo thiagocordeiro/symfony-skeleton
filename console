@@ -35,18 +35,28 @@ function logs() { ### show php-fpm errors
   _compose exec php-fpm logs -f
 }
 
-function exec() { ### show php-fpm errors
-  _compose exec "$1" "$@"
+function exec() { ### execute command on php-fpm container
+  _compose exec php-fpm "$@"
 }
 
 function bash() { ### show php-fpm errors
   _compose exec "$1" bash
 }
 
-function armageddon() { ### stop/delete all containers and delete all images
-  docker stop $(docker ps -aq)
-  docker rm $(docker ps -aq)
-  docker rmi $(docker images -aq)
+function armageddon() { ### stop/delete all containers and images (including any other project you had previously)
+  echo -e $'\e[41m                                                                                      '
+  echo '   This command will delete all images, including any other projects you might have   '
+  echo -e $'                                                                                      \e[0m'
+  echo
+
+  read -p "Are you sure you want to continue? [y/n]" -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+      docker stop $(docker ps -aq)
+      docker rm $(docker ps -aq)
+      docker rmi $(docker images -aq)
+  fi
 }
 
 if [ "_$1" = "_" ]; then
