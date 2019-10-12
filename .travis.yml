@@ -8,18 +8,17 @@ before_install:
     - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     - sudo apt-get update
-    - sudo apt-get -y install docker-ce
+    - sudo apt-get -y install ucommon-utils docker-ce
     - sudo service mysql stop
 
 install:
-    - docker-compose up --build -d
-    - docker exec php-fpm composer install
+    - ./console upd
 
 script:
-    - docker exec php-fpm composer tests
+    - ./console tests
 
 after_failure:
-    - docker-compose php-fpm logs -f
+    - ./console logs
 
 after_script:
-    - docker-compose down
+    - ./console down

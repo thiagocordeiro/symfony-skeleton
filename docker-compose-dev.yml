@@ -1,0 +1,32 @@
+version: '3'
+services:
+    mysql:
+        image: mysql:5.7
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASS}
+            MYSQL_DATABASE: ${DB_BASE}
+        ports:
+            - ${DB_PORT}:${DB_PORT}
+
+    php-fpm:
+        volumes:
+            - ./app/bin:/var/www/html/bin
+            - ./app/config:/var/www/html/config
+            - ./app/public:/var/www/html/public
+            - ./app/src:/var/www/html/src
+            - ./app/tests:/var/www/html/tests
+            - ./app/composer.json:/var/www/html/composer.json
+            - ./app/composer.lock:/var/www/html/composer.lock
+            - ./app/symfony.lock:/var/www/html/symfony.lock
+            - ./app/phpstan.neon:/var/www/html/phpstan.neon
+        links:
+            - mysql
+        environment:
+            APP_ENV: dev
+            APP_DEBUG: 'true'
+        ports:
+            - ${APP_PORT}:80
+        entrypoint:
+            "./entrypoint-dev"

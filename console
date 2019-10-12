@@ -1,0 +1,56 @@
+#!/bin/bash
+
+set -a
+source .env
+
+function help() { ### Show the list of possible functions
+  grep -E '^function.*?###' $0 | sed "s/^function //g" | sed "s/()/:/g" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m./console %-12s\033[0m %s\n", $1, $2}'
+}
+
+function _compose() {
+    docker-compose -f docker-compose-prod.yml -f docker-compose-dev.yml "$@"
+}
+
+function up() { ### build and start development environment
+  _compose up --build
+}
+
+function upd() { ### build and start development environment detached
+  _compose up --build --detach
+}
+
+function down() { ### stop development environment
+  _compose down
+}
+
+function tests() { ### run all tests (coding standards, static analysis, unit, integration)
+  _compose exec php-fpm composer run tests
+}
+
+function prod() { ### build production images
+  docker-compose -f docker-compose-prod.yml up --build
+}
+
+function logs() { ### show php-fpm errors
+  _compose exec php-fpm logs -f
+}
+
+function exec() { ### show php-fpm errors
+  _compose exec "$1" "$@"
+}
+
+function bash() { ### show php-fpm errors
+  _compose exec "$1" bash
+}
+
+function armageddon() { ### stop/delete all containers and delete all images
+  docker stop $(docker ps -aq)
+  docker rm $(docker ps -aq)
+  docker rmi $(docker images -aq)
+}
+
+if [ "_$1" = "_" ]; then
+  help
+else
+  "$@"
+fi

@@ -1,0 +1,13 @@
+version: '3'
+services:
+    php-fpm:
+        image: ${IMAGE_NAME}/symfony-app
+        build:
+            context: ./app
+        environment:
+            APP_ENV: 'prod'
+            APP_SECRET: ${APP_SECRET}
+            APP_DEBUG: 'false'
+            DB_HOST: ${DB_HOST}
+            DB_PORT: ${DB_PORT}
+            DATABASE_URL: 'mysql://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_BASE}'
