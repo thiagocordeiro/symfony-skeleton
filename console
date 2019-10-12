@@ -1,15 +1,7 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 set -a
-
-IMAGE_NAME=development
-DB_USER=root
-DB_PASS=root
-DB_HOST=mysql
-DB_PORT=3306
-DB_BASE=default
-APP_PORT=80
-RANDOM_KEY=$(echo ${RANDOM}${RANDOM}${RANDOM}${RANDOM} | md5sum)
+source .env
 
 function help() { ### Show the list of possible functions
   grep -E '^function.*?###' $0 | sed "s/^function //g" | sed "s/()/:/g" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-12s\033[0m %s\n", $1, $2}'
